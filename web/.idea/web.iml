@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$" />
+    <orderEntry type="jdk" jdkName="12" jdkType="JavaSDK" />
+    <orderEntry type="library" scope="PROVIDED" name="Tomcat 9.0.17" level="application_server_libraries" />
+    <orderEntry type="library" name="servlet-api" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
