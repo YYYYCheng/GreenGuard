@@ -22,5 +22,6 @@
     <orderEntry type="library" exported="" name="commons-beanutils-1.7.0" level="project" />
     <orderEntry type="library" exported="" name="lib1" level="project" />
     <orderEntry type="library" exported="" scope="PROVIDED" name="Tomcat 8.5.38" level="application_server_libraries" />
+    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
   </component>
 </module>
