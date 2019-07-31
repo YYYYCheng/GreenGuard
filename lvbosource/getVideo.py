@@ -1,3 +1,4 @@
+# coding=utf-8
 # 获取直播源
 from streamlink import Streamlink
 import streamlink

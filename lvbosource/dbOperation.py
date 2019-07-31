@@ -18,10 +18,11 @@ class DbOperation(object):
     #     self.db, self.cursor = self.openDB()
     def __init__(self):
         self.username = 'root'
-        self.password = 'root'
+        self.password = 'maxzmaxz'
         self.host = 'localhost'
         self.port = 3306
-        self.db_name = 'live'
+        self.db_name = 'dmmonitor'
+        self.default_authentication_plugin = 'mysql_native_password'
         self.db, self.cursor = self.openDB()
     # def __del__(self):
     #     self.closeDB()

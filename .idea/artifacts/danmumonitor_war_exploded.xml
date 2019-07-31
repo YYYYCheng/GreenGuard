@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="danmumonitor:war exploded">
+  <artifact type="war" name="danmumonitor:war exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/danmumonitor_war_exploded</output-path>
-    <root id="root">
+    <root id="archive" name="danmumonitor_war exploded.war">
       <element id="javaee-facet-resources" facet="danmumonitor/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">

@@ -48,15 +48,10 @@
     <script src="js/jquery-1.9.0.min.js"></script>
 
     <script>
-        function sleep(d){
-            for(var t = Date.now();Date.now() - t <= d;);
-        }
         setInterval("doPost()", 3000);
         function doPost() {
             tableAjax();
             var MAname = $("#pageMAname").val();
-
-
             $.post("getDanMuServlet",
                 {
                     listMAname: MAname
@@ -67,38 +62,24 @@
                     //alert(json);
                     $.each(json, function () {
                         $("#DM1").html(json.rows[0].DM);
-                        sleep(1000);
                         $("#DM2").html(json.rows[1].DM);
                         $("#DM3").html(json.rows[2].DM);
-                        sleep(2000);
                         $("#DM4").html(json.rows[3].DM);
-                        sleep(500);
                         $("#DM5").html(json.rows[4].DM);
                         $("#DM6").html(json.rows[5].DM);
-                        sleep(1000);
                         $("#DM7").html(json.rows[6].DM);
-                        sleep(1000);
                         $("#DM8").html(json.rows[7].DM);
-                        sleep(1000);
                         $("#DM9").html(json.rows[8].DM);
                         $("#DM10").html(json.rows[9].DM);
-                        sleep(500);
                         $("#DM11").html(json.rows[10].DM);
                         $("#DM12").html(json.rows[11].DM);
-                        //sleep(1000);
                         $("#DM13").html(json.rows[12].DM);
-                        sleep(1000);
                         $("#DM14").html(json.rows[13].DM);
-                        sleep(1000);
                         $("#DM15").html(json.rows[14].DM);
-                        sleep(1000);
                         $("#DM16").html(json.rows[15].DM);
-                        sleep(1000);
                         $("#DM17").html(json.rows[16].DM);
                         $("#DM18").html(json.rows[17].DM);
-                        sleep(1000);
                         $("#DM19").html(json.rows[18].DM);
-                        sleep(1000);
                         $("#DM20").html(json.rows[19].DM);
                         $("#nowDMnumber").html(json.DMnumber);
                         $("#hisGrade").html(json.Hisnumber);
@@ -109,8 +90,47 @@
                 },
                 "json"//期望获得json格式
             );
-
         }
+        setInterval("freshDanmu()", 3000);
+        function freshDanmu(){
+            var MAroom = $("#pageMAroom").val();
+            $.post("RefreshDanMuServlet",
+                {
+                    RefreshMAroom : MAroom
+                },
+                function(data){
+                    var jsondm = eval(data);
+                    $.each(json, function () {
+                        $("#DM1").html(json.rows[0].DM);
+                        $("#DM2").html(json.rows[1].DM);
+                        $("#DM3").html(json.rows[2].DM);
+                        $("#DM4").html(json.rows[3].DM);
+                        $("#DM5").html(json.rows[4].DM);
+                        $("#DM6").html(json.rows[5].DM);
+                        $("#DM7").html(json.rows[6].DM);
+                        $("#DM8").html(json.rows[7].DM);
+                        $("#DM9").html(json.rows[8].DM);
+                        $("#DM10").html(json.rows[9].DM);
+                        $("#DM11").html(json.rows[10].DM);
+                        $("#DM12").html(json.rows[11].DM);
+                        $("#DM13").html(json.rows[12].DM);
+                        $("#DM14").html(json.rows[13].DM);
+                        $("#DM15").html(json.rows[14].DM);
+                        $("#DM16").html(json.rows[15].DM);
+                        $("#DM17").html(json.rows[16].DM);
+                        $("#DM18").html(json.rows[17].DM);
+                        $("#DM19").html(json.rows[18].DM);
+                        $("#DM20").html(json.rows[19].DM);
+                        $("#nowDMnumber").html(json.DMnumber);
+                        $("#hisGrade").html(json.Hisnumber);
+                        $("#nowGrade").html(json.Nownumber);
+// 									$("#hisGrade").html(json.his);
+// 						      		$("#nowGrade").html(json.now);
+                    });
+                },
+                "json"
+            );
+        };
 
 
     </script>
@@ -235,19 +255,19 @@
                             dataname[i] = (String) rs_a.getString("MAname");
                             datadmnum[i] = (String) rs_a.getString("MAdmnum");
                     %>
-<%--                    <div class="side-border">--%>
-<%--                        <small><%=rs_a.getString("MAname") %>--%>
-<%--                        </small>--%>
-<%--                        <div class="progress progress-small">--%>
-<%--                            <a--%>
-<%--                                    href="${pageContext.request.contextPath}/AnchorProDanMuServlet?listMAname=<%=rs_a.getString("MAname") %>"--%>
-<%--                                    data-toggle="tooltip" title=""--%>
-<%--                                    class="tooltips progress-bar progress-bar-info"--%>
-<%--                                    style="width: 60%;" data-original-title="60%"> <span--%>
-<%--                                    class="sr-only">60% Complete</span>--%>
-<%--                            </a>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
+                    <%--                    <div class="side-border">--%>
+                    <%--                        <small><%=rs_a.getString("MAname") %>--%>
+                    <%--                        </small>--%>
+                    <%--                        <div class="progress progress-small">--%>
+                    <%--                            <a--%>
+                    <%--                                    href="${pageContext.request.contextPath}/AnchorProDanMuServlet?listMAname=<%=rs_a.getString("MAname") %>"--%>
+                    <%--                                    data-toggle="tooltip" title=""--%>
+                    <%--                                    class="tooltips progress-bar progress-bar-info"--%>
+                    <%--                                    style="width: 60%;" data-original-title="60%"> <span--%>
+                    <%--                                    class="sr-only">60% Complete</span>--%>
+                    <%--                            </a>--%>
+                    <%--                        </div>--%>
+                    <%--                    </div>--%>
                     <%
                             i++;
                         }
@@ -391,24 +411,24 @@
                             <div class="tile">
                                 <video src="images/test.ogg" controls="controls" width="100%">
                                 </video>
-<%--                                <h2 class="tile-title">主播实时画面</h2>--%>
-<%--                                <div class="tile-config dropdown">--%>
-<%--                                    <a data-toggle="dropdown" href="" class="tooltips tile-menu"--%>
-<%--                                       title="Options"></a>--%>
-<%--                                    <ul class="dropdown-menu pull-right text-right">--%>
-<%--                                        <li><a href="">刷新</a></li>--%>
-<%--                                        <li><a href="">设置</a></li>--%>
-<%--                                    </ul>--%>
-<%--                                </div>--%>
-<%--                                <video src="images/test.ogg" controls="controls">--%>
-<%--                                </video>--%>
-<%--                                <!-- 									<div class="p-10"> -->--%>
-<%--                                <!-- 										<div id="dynamic-chart" class="main-chart" -->--%>
-<%--                                <!-- 											style="height: 250px"></div> -->--%>
-<%--                                <!-- 										<div class="main-chart" style="height: 30.1em"></div> -->--%>
-<%--                                &lt;%&ndash; 										<jsp:include page="js/echarts/anchor_DongtaiData.jsp"></jsp:include> &ndash;%&gt;--%>
-<%--                                <!-- 									</div> -->--%>
-<%--                                <div id="dynamicchart2" class="main-chart" style="height: 30em"></div>--%>
+                                <%--                                <h2 class="tile-title">主播实时画面</h2>--%>
+                                <%--                                <div class="tile-config dropdown">--%>
+                                <%--                                    <a data-toggle="dropdown" href="" class="tooltips tile-menu"--%>
+                                <%--                                       title="Options"></a>--%>
+                                <%--                                    <ul class="dropdown-menu pull-right text-right">--%>
+                                <%--                                        <li><a href="">刷新</a></li>--%>
+                                <%--                                        <li><a href="">设置</a></li>--%>
+                                <%--                                    </ul>--%>
+                                <%--                                </div>--%>
+                                <%--                                <video src="images/test.ogg" controls="controls">--%>
+                                <%--                                </video>--%>
+                                <%--                                <!-- 									<div class="p-10"> -->--%>
+                                <%--                                <!-- 										<div id="dynamic-chart" class="main-chart" -->--%>
+                                <%--                                <!-- 											style="height: 250px"></div> -->--%>
+                                <%--                                <!-- 										<div class="main-chart" style="height: 30.1em"></div> -->--%>
+                                <%--                                &lt;%&ndash; 										<jsp:include page="js/echarts/anchor_DongtaiData.jsp"></jsp:include> &ndash;%&gt;--%>
+                                <%--                                <!-- 									</div> -->--%>
+                                <%--                                <div id="dynamicchart2" class="main-chart" style="height: 30em"></div>--%>
 
                             </div>
                         </div>
@@ -433,7 +453,7 @@
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <span
                             style="font-size:1.5em">在线状态：<%=mt.getMAstate() %></span> <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <span
-                            style="font-size:1.5em">房间号：<%=mt.getMAroom() %></span>
+                            style="font-size:1.5em" id="pageMAroom">房间号：<%=mt.getMAroom() %></span>
                         <button class="btn btn-sm"
                                 onclick="OpenAnchorPageOf('https://www.douyu.com//<%=mt.getMAroom() %>')">打开房间
                         </button>
@@ -516,69 +536,69 @@
                         }
                     </script>
 
-<%--                    <div class="col-md-12">--%>
+                    <%--                    <div class="col-md-12">--%>
 
-<%--                        <h2 class="tile-title">该主播历史弹幕中出现的主要敏感词分类</h2>--%>
+                    <%--                        <h2 class="tile-title">该主播历史弹幕中出现的主要敏感词分类</h2>--%>
 
-<%--                        <div class="table-responsive overflow">--%>
-<%--                            <table class="table tile">--%>
+                    <%--                        <div class="table-responsive overflow">--%>
+                    <%--                            <table class="table tile">--%>
 
-<%--                                <thead>--%>
-<%--                                <tr>--%>
-<%--                                    <th>偏向</th>--%>
-<%--                                    <th>色情淫秽</th>--%>
-<%--                                    <th>侮辱谩骂</th>--%>
-<%--                                    <th>反动言论</th>--%>
-<%--                                    <th>血腥暴力</th>--%>
-<%--                                    <th>其他犯罪</th>--%>
-<%--                                </tr>--%>
-<%--                                </thead>--%>
-<%--                                <tbody>--%>
-<%--                                <tr>--%>
-<%--                                    <td id="prefer">正常</td>--%>
-<%--                                    <td id="sex">0%</td>--%>
-<%--                                    <td id="abuse">0%</td>--%>
-<%--                                    <td id="react">0%</td>--%>
-<%--                                    <td id="violence">0%</td>--%>
-<%--                                    <td id="other">0%</td>--%>
-<%--                                </tr>--%>
-<%--                                </tbody>--%>
-<%--                            </table>--%>
+                    <%--                                <thead>--%>
+                    <%--                                <tr>--%>
+                    <%--                                    <th>偏向</th>--%>
+                    <%--                                    <th>色情淫秽</th>--%>
+                    <%--                                    <th>侮辱谩骂</th>--%>
+                    <%--                                    <th>反动言论</th>--%>
+                    <%--                                    <th>血腥暴力</th>--%>
+                    <%--                                    <th>其他犯罪</th>--%>
+                    <%--                                </tr>--%>
+                    <%--                                </thead>--%>
+                    <%--                                <tbody>--%>
+                    <%--                                <tr>--%>
+                    <%--                                    <td id="prefer">正常</td>--%>
+                    <%--                                    <td id="sex">0%</td>--%>
+                    <%--                                    <td id="abuse">0%</td>--%>
+                    <%--                                    <td id="react">0%</td>--%>
+                    <%--                                    <td id="violence">0%</td>--%>
+                    <%--                                    <td id="other">0%</td>--%>
+                    <%--                                </tr>--%>
+                    <%--                                </tbody>--%>
+                    <%--                            </table>--%>
 
-<%--                        </div>--%>
-<%--                    </div>--%>
+                    <%--                        </div>--%>
+                    <%--                    </div>--%>
                     <!--col-md-12-->
 
                     <%--<div class="row">--%>
 
 
-                        <%--<div class="col-md-12">--%>
-                            <%--<div class="tile">--%>
-                                <%--<h2 class="tile-title">该主播本周评分汇总</h2>--%>
-                                <%--<div class="tile-config dropdown">--%>
-                                    <%--<a data-toggle="dropdown" href="" class="tooltips tile-menu"--%>
-                                       <%--title="" data-original-title="Options"></a>--%>
-                                    <%--<ul class="dropdown-menu pull-right text-right">--%>
-                                        <%--<li><a href="#" onclick="OpenAnchorPage()">刷新</a></li>--%>
-                                        <%--<li><a href="#" onclick="CloseAnchorPage()">关闭</a></li>--%>
-                                    <%--</ul>--%>
-                                <%--</div>--%>
+                    <%--<div class="col-md-12">--%>
+                    <%--<div class="tile">--%>
+                    <%--<h2 class="tile-title">该主播本周评分汇总</h2>--%>
+                    <%--<div class="tile-config dropdown">--%>
+                    <%--<a data-toggle="dropdown" href="" class="tooltips tile-menu"--%>
+                    <%--title="" data-original-title="Options"></a>--%>
+                    <%--<ul class="dropdown-menu pull-right text-right">--%>
+                    <%--<li><a href="#" onclick="OpenAnchorPage()">刷新</a></li>--%>
+                    <%--<li><a href="#" onclick="CloseAnchorPage()">关闭</a></li>--%>
+                    <%--</ul>--%>
+                    <%--</div>--%>
 
-                                <%--<div class="p-10">--%>
-                                    <%--<div style="width:60.1em; height: 28.1em">--%>
-                                        <%--<jsp:include page="js/echarts/anchor_lincharts.jsp"></jsp:include>--%>
-                                    <%--</div>--%>
+                    <%--<div class="p-10">--%>
+                    <%--<div style="width:60.1em; height: 28.1em">--%>
+                    <%--<jsp:include page="js/echarts/anchor_lincharts.jsp"></jsp:include>--%>
+                    <%--</div>--%>
 
-                                    <%--<div class="media p-5 text-center l-100">--%>
+                    <%--<div class="media p-5 text-center l-100">--%>
 
-                                        <%--<button class="btn btn-sm" onclick="changeEchartslin('lin')">查看本周评分走势</button>--%>
-                                        <%--<button class="btn btn-sm" onclick="changeEchartsbar('bar')">查看各类敏感词占比</button>--%>
-                                        <%--<!-- 											<script src="js/echarts/anchor_lincharts.js"></script> -->--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
+                    <%--<button class="btn btn-sm" onclick="changeEchartslin('lin')">查看本周评分走势</button>--%>
+                    <%--<button class="btn btn-sm" onclick="changeEchartsbar('bar')">查看各类敏感词占比</button>--%>
+                    <%--<!-- 											<script src="js/echarts/anchor_lincharts.js"></script> -->--%>
+                    <%--</div>--%>
+                    <%--</div>--%>
+                    <%--</div>--%>
 
-                        <%--</div>--%>
+                    <%--</div>--%>
 
 
                     <%--</div>--%>

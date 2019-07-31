@@ -1,3 +1,4 @@
+# coding=utf-8
 import threading
 import getVideo
 import time
@@ -9,13 +10,13 @@ import getDouyuDanmu
 exitFlag = 0
 
 #这里输入房间号的列表
-roomList = [5424690, 288016]
+roomList = [138243, 2239986]
 
-# # 创建danmu Spider线程
-# for room in roomList:
-#     dt = threading.Thread(target=getDouyuDanmu.get_danmu, args=(room,))
-#     print("开启进程，爬 " + str(room) + " 弹幕")
-#     dt.start()
+# 创建danmu Spider线程
+for room in roomList:
+    dt = threading.Thread(target=getDouyuDanmu.get_danmu, args=(room,))
+    print("开启进程，爬 " + str(room) + " 弹幕")
+    dt.start()
 
 #创建video Spider线程
 while(1):
